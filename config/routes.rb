@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  resources :user_groups
-  resources :groups
+  # resources :user_groups
+  resources :groups, only: [:index, :create]
   resources :follows, only: [:create]
-  resources :comments, only: [:show, :create, :destroy]
-  resources :posts, only: [:index, :create, :destroy]
-  resources :users, only: [:show, :create, :update, :destroy]
+  resources :comments, only: [:create, :update, :destroy]
+  resources :posts, only: [:index, :create, :update, :destroy]
+  resources :users, only: [:create, :update]
   post '/auth', to: 'auth#create'
   get '/auth', to: 'auth#show'
   get '/post_comments/:post_id', to: 'comments#index'
-  delete '/destroy_comments/:post_id', to: 'comments#destroy_all'
+  get '/posts/:group_id', to: 'posts#index_by_group'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
