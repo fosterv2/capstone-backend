@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_groups
+  resources :groups
   resources :follows, only: [:create]
   resources :comments, only: [:show, :create, :destroy]
   resources :posts, only: [:index, :create, :destroy]

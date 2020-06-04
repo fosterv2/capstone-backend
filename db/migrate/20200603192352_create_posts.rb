@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :post_img
       t.integer :likes
       t.integer :user_id
+      t.integer :group_id
 
       t.timestamps
     end
