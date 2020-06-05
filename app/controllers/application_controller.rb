@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
 
     def decoded_token
         begin
-            JWT.decode(token, 'Tur2nip', true, algorithm: 'HS256')
+            JWT.decode(token, 'Tur2nip!', true, { algorithm: 'HS256' })
         rescue JWT::DecodeError
             [{error: "Invalid Token"}]
         end

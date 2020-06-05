@@ -1,9 +1,8 @@
 class AuthController < ApplicationController
     def create
         user = User.find_by(username: params[:username])
-        # byebug
         if user && user.authenticate(params[:password])
-            token = encode_token(user)
+            token = encode_token({ user_id: user.id })
             render json: { user: UserSerializer.new(user), jwt: token }
         else
             render json: {error: 'No user could be found'}, status: 401
@@ -11,9 +10,9 @@ class AuthController < ApplicationController
     end
 
     def show
-        user = User.find(params[:id])
+        user = current_user
         if user && logged_in?
-            render json: user.to_json(except: [:created_at, :updated_at])
+            render json: { user: UserSerializer.new(user) }
         else
             render json: {error: 'No user could be found'}, status: 401
         end
