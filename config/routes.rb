@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update]
   post '/auth', to: 'auth#create'
   get '/auth', to: 'auth#show'
-  get '/post_comments/:post_id', to: 'comments#index'
+  get '/comments/:post_id', to: 'comments#index'
   get '/posts/:group_id', to: 'posts#index_by_group'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
