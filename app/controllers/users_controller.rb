@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     def create
         user = User.new(set_params)
         user.password = params[:password]
-        user = user.save
+        user.save
         if user.valid?
             token = encode_token(user)
             render json: { user: UserSerializer.new(user), jwt: token }
