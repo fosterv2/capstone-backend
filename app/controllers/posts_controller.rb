@@ -9,6 +9,11 @@ class PostsController < ApplicationController
         render json: post.to_json(include: [:user], except: [:updated_at])
     end
 
+    def show
+        post = Post.find(params[:id])
+        render json: post.to_json(include: [:user], except: [:updated_at])
+    end
+
     def create
         post = Post.create(set_params)
         post["likes"] = 0

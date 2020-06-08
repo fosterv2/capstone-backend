@@ -1,18 +1,18 @@
 class CommentsController < ApplicationController
     def index
         comments = Comment.where("post_id = ?", params[:post_id])
-        render json: comments.to_json(except: [:updated_at, :post_id])
+        render json: comments.to_json(include: [:user], except: [:updated_at, :post_id])
     end
 
     def create
         comment = Comment.create(set_params)
-        render json: comment.to_json(except: [:updated_at])
+        render json: comment.to_json(include: [:user], except: [:updated_at])
     end
 
     def update
         comment = Comment.find(params[:id])
         comment.update(set_params)
-        render json: comment.to_json(except: [:updated_at])
+        render json: comment.to_json(include: [:user], except: [:updated_at])
     end
 
     def destroy
