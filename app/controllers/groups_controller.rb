@@ -16,6 +16,8 @@ class GroupsController < ApplicationController
 
     def create
         group = Group.create(set_params)
+        # maybe make the creator an attribute, and creator can update
+        User.find(params[:user_id]).groups << group
         render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
     end
 
