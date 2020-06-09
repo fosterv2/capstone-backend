@@ -5,8 +5,8 @@ class PostsController < ApplicationController
     end
 
     def index_by_group
-        post = Post.where("post_id = ?", params[:post_id])
-        render json: post.to_json(include: [:user], except: [:updated_at])
+        posts = Post.where("group_id = ?", params[:group_id])
+        render json: posts.to_json(include: [:user], except: [:updated_at])
     end
 
     def show
@@ -17,6 +17,7 @@ class PostsController < ApplicationController
     def create
         post = Post.create(set_params)
         post["likes"] = 0
+        post.save
         render json: post.to_json(include: [:user], except: [:updated_at])
     end
 
