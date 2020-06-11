@@ -20,6 +20,18 @@ class UsersController < ApplicationController
         end
     end
 
+    def add_group
+        group = Group.find(params[:group_id])
+        UserGroup.create(user_id: params[:user_id], group_id: params[:group_id])
+        render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
+    end
+
+    def remove_group
+        group = Group.find(params[:group_id])
+        UserGroup.where("group_id = ? AND user_id = ?", params[:group_id], params[:user_id])[0].destroy
+        render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
+    end
+
     # def destroy
     # end
 
