@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_165152) do
+ActiveRecord::Schema.define(version: 2020_06_11_234609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_165152) do
     t.text "content"
     t.integer "post_id"
     t.integer "user_id"
+    t.boolean "deleted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,6 +34,21 @@ ActiveRecord::Schema.define(version: 2020_06_04_165152) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "creator_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_groups", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -40,9 +56,8 @@ ActiveRecord::Schema.define(version: 2020_06_04_165152) do
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.string "post_img"
-    t.integer "likes"
     t.integer "user_id"
-    t.integer "group_id"
+    t.boolean "deleted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

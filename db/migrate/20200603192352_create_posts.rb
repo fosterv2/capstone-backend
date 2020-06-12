@@ -3,9 +3,8 @@ class CreatePosts < ActiveRecord::Migration[6.0]
     create_table :posts do |t|
       t.text :content
       t.string :post_img
-      t.integer :likes
       t.integer :user_id
-      t.integer :group_id
+      t.boolean :deleted
 
       t.timestamps
     end

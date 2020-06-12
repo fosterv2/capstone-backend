@@ -31,30 +31,34 @@ User.all.each do |user|
     user.groups << Group.all.sample
 end
 
-Post.create(content: "Sleeping under the covers is the best.", 
-    user_id: 2, post_img: "https://cdn2.thecatapi.com/images/lj.jpg", likes: 0, group: Group.all.sample)
-Post.create(content: "Don't you hate it when another cat thinks you need a bath?", 
-    user_id: 1, post_img: "https://cdn2.thecatapi.com/images/m4.jpg", likes: 0, group: Group.all.sample)
-Post.create(content: "This fuzzy thing doesn't taste as good as it looks...", 
-    user_id: 3, post_img: "https://cdn2.thecatapi.com/images/75j.jpg", likes: 0, group: Group.all.sample)
-Post.create(content: "I don't know why it's wet outside. It wasn't yesterday.", 
-    user_id: 1, post_img: "", likes: 0, group: Group.all.sample)
-Post.create(content: "This looked so easy to climb at first.", 
-    user_id: 4, post_img: "https://cdn2.thecatapi.com/images/9r7.jpg", likes: 0, group: Group.all.sample)
-Post.create(content: "Nobody else can touch my baby", 
-    user_id: 5, post_img: "https://cdn2.thecatapi.com/images/ach.jpg", likes: 0, group: Group.all.sample)
+Post.create(content: "Sleeping under the covers is the best.", deleted: false, 
+    user_id: 2, post_img: "https://cdn2.thecatapi.com/images/lj.jpg")
+Post.create(content: "Don't you hate it when another cat thinks you need a bath?", deleted: false,  
+    user_id: 1, post_img: "https://cdn2.thecatapi.com/images/m4.jpg")
+Post.create(content: "This fuzzy thing doesn't taste as good as it looks...", deleted: false, 
+    user_id: 3, post_img: "https://cdn2.thecatapi.com/images/75j.jpg")
+Post.create(content: "I don't know why it's wet outside. It wasn't yesterday.", deleted: false, 
+    user_id: 1, post_img: "")
+Post.create(content: "This looked so easy to climb at first.", deleted: false, 
+    user_id: 4, post_img: "https://cdn2.thecatapi.com/images/9r7.jpg")
+Post.create(content: "Nobody else can touch my baby", deleted: false, 
+    user_id: 5, post_img: "https://cdn2.thecatapi.com/images/ach.jpg")
 
-Comment.create(content: "Especially when there's another cat with you", post_id: 1, user: User.all.sample)
-Comment.create(content: "I'm always looking for covers to burrow into", post_id: 1, user: User.all.sample)
-Comment.create(content: "I was just trying to help", post_id: 2, user: User.all.sample)
-Comment.create(content: "They never do", post_id: 3, user: User.all.sample)
-Comment.create(content: "All the fun is in trying to catch it", post_id: 3, user: User.all.sample)
-Comment.create(content: "It should be sunny all the time", post_id: 4, user: User.all.sample)
-Comment.create(content: "I hate wet", post_id: 4, user: User.all.sample)
-Comment.create(content: "Never stop trying to climb", post_id: 5, user: User.all.sample)
-Comment.create(content: "Try again. It'll definitely work next time", post_id: 5, user: User.all.sample)
-Comment.create(content: "All kittens must be protected", post_id: 6, user: User.all.sample)
-Comment.create(content: "You're a good cat mom", post_id: 6, user: User.all.sample)
+Post.all.each do |post|
+    post.groups << Group.all.sample
+end
+
+Comment.create(content: "Especially when there's another cat with you", post_id: 1, user: User.all.sample, deleted: false)
+Comment.create(content: "I'm always looking for covers to burrow into", post_id: 1, user: User.all.sample, deleted: false)
+Comment.create(content: "I was just trying to help", post_id: 2, user: User.all.sample, deleted: false)
+Comment.create(content: "They never do", post_id: 3, user: User.all.sample, deleted: false)
+Comment.create(content: "All the fun is in trying to catch it", post_id: 3, user: User.all.sample, deleted: false)
+Comment.create(content: "It should be sunny all the time", post_id: 4, user: User.all.sample, deleted: false)
+Comment.create(content: "I hate wet", post_id: 4, user: User.all.sample, deleted: false)
+Comment.create(content: "Never stop trying to climb", post_id: 5, user: User.all.sample, deleted: false)
+Comment.create(content: "Try again. It'll definitely work next time", post_id: 5, user: User.all.sample, deleted: false)
+Comment.create(content: "All kittens must be protected", post_id: 6, user: User.all.sample, deleted: false)
+Comment.create(content: "You're a good cat mom", post_id: 6, user: User.all.sample, deleted: false)
 
 
 # kitten pile / tigger : https://cdn2.thecatapi.com/images/26c.jpg

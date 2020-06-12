@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :post_groups
+  resources :likes
   resources :user_groups, only: [:create]
   resources :groups, only: [:index, :show, :create] # :show only until refactor
   resources :follows, only: [:create]

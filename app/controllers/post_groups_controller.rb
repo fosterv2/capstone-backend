@@ -1,0 +1,2 @@
+class PostGroupsController < ApplicationController
+end
