@@ -16,8 +16,8 @@ class PostsController < ApplicationController
 
     def create
         post = Post.create(set_params)
-        post["likes"] = 0
-        post.save
+        # post["deleted"] = false
+        # post.save
         render json: post.to_json(include: [:user], except: [:updated_at])
     end
 

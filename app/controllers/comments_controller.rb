@@ -6,6 +6,8 @@ class CommentsController < ApplicationController
 
     def create
         comment = Comment.create(set_params)
+        # comment["deleted"] = false
+        # comment.save
         render json: comment.to_json(include: [:user], except: [:updated_at])
     end
 
