@@ -11,13 +11,13 @@ class GroupsController < ApplicationController
 
     def create
         group = Group.create(set_params)
-        User.find(params[:user_id]).groups << group
+        User.find(params[:creator_id]).groups << group
         render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
     end
 
     private
     
     def set_params
-        params.require(:group).permit(:name, :description)
+        params.require(:group).permit(:name, :description, :creator_id)
     end
 end
