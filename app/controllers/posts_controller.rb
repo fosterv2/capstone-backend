@@ -16,14 +16,14 @@ class PostsController < ApplicationController
 
     def create
         post = Post.create(set_params)
-        # post["deleted"] = false
-        # post.save
+        post.group_ids = params[:group_ids]
         render json: post.to_json(include: [:user, :groups, :likes], except: [:updated_at])
     end
 
     def update
         post = Post.find(params[:id])
         post.update(set_params)
+        post.group_ids = params[:group_ids]
         render json: post.to_json(include: [:user, :groups, :likes], except: [:updated_at])
     end
 
