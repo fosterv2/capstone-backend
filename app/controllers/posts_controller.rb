@@ -35,12 +35,13 @@ class PostsController < ApplicationController
 
     def destroy
         post = Post.find(params[:id])
-        post.destroy
+        post.update(set_params)
+        render json: post.to_json(include: [:user, :groups, :likes], except: [:updated_at])
     end
 
     private
 
     def set_params
-        params.require(:post).permit(:content, :user_id, :group_id, :post_img)
+        params.require(:post).permit(:content, :user_id, :group_id, :post_img, :deleted)
     end
 end
