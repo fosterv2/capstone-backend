@@ -4,14 +4,15 @@ class GroupsController < ApplicationController
         render json: groups.to_json(include: [:users], except: [:created_at, :updated_at])
     end
 
-    def show
-        group = Group.find(params[:id])
-        render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
-    end
-
     def create
         group = Group.create(set_params)
         User.find(params[:creator_id]).groups << group
+        render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
+    end
+
+    def update
+        group = Group.find(params[:id])
+        group.update(set_params)
         render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
     end
 

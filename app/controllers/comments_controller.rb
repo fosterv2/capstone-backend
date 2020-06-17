@@ -6,21 +6,19 @@ class CommentsController < ApplicationController
 
     def create
         comment = Comment.create(set_params)
-        # comment["deleted"] = false
-        # comment.save
         render json: comment.to_json(include: [:user], except: [:updated_at])
     end
 
-    def update
-        comment = Comment.find(params[:id])
-        comment.update(set_params)
-        render json: comment.to_json(include: [:user], except: [:updated_at])
-    end
+    # def update
+    #     comment = Comment.find(params[:id])
+    #     comment.update(set_params)
+    #     render json: comment.to_json(include: [:user], except: [:updated_at])
+    # end
 
-    def destroy
-        comment = Comment.find(params[:id])
-        comment.destroy
-    end
+    # def destroy
+    #     comment = Comment.find(params[:id])
+    #     comment.destroy
+    # end
 
     private
 

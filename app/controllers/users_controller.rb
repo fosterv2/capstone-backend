@@ -32,9 +32,6 @@ class UsersController < ApplicationController
         render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
     end
 
-    # def destroy
-    # end
-
     private
 
     def set_params

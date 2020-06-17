@@ -1,2 +1,0 @@
-class PostGroupsController < ApplicationController
-end

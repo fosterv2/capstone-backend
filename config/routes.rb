@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
-  resources :post_groups
-  resources :likes
-  resources :user_groups, only: [:create]
-  resources :groups, only: [:index, :create]
-  resources :follows, only: [:create]
-  resources :comments, only: [:create, :update, :destroy]
+  resources :groups, only: [:index, :create, :update]
+  resources :comments, only: [:create]
   resources :posts, only: [:index, :create, :update, :destroy]
   resources :users, only: [:create, :update]
   post '/auth', to: 'auth#create'
   get '/auth', to: 'auth#show'
   get '/comments/:post_id', to: 'comments#index'
-  # get '/posts/group/:group_id', to: 'posts#index_by_group'
   patch '/users/:user_id/groups', to: 'users#add_group'
   delete '/users/:user_id/groups', to: 'users#remove_group'
   patch '/posts/:post_id/likes', to: 'posts#add_like'

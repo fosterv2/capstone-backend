@@ -4,16 +4,6 @@ class PostsController < ApplicationController
         render json: posts.to_json(include: [:user, :groups, :likes], except: [:updated_at])
     end
 
-    # def index_by_group
-    #     posts = Post.where("group_id = ?", params[:group_id])
-    #     render json: posts.to_json(include: [:user, :groups, :likes], except: [:updated_at])
-    # end
-
-    # def show
-    #     post = Post.find(params[:id])
-    #     render json: post.to_json(include: [:user, :groups, :likes], except: [:updated_at])
-    # end
-
     def create
         post = Post.create(set_params)
         post.group_ids = params[:group_ids]
