@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     def update
         user = User.find(params[:id])
         if user.update(set_params)
-            render json: user.to_json(except: [:created_at, :updated_at])
+            render json: user.to_json(include: [:followers, :followees], except: [:created_at, :updated_at])
         else
             render json: {error: user.errors.full_messages}, status: 401
         end
@@ -30,6 +30,18 @@ class UsersController < ApplicationController
         group = Group.find(params[:group_id])
         UserGroup.where("group_id = ? AND user_id = ?", params[:group_id], params[:user_id])[0].destroy
         render json: group.to_json(include: [:users], except: [:created_at, :updated_at])
+    end
+
+    def add_follower
+        user = User.find(params[:user_id])
+        Follow.create(follower_id: params[:user_id], followee_id: params[:follow_id])
+        render json: user.to_json(include: [:followers, :followees], except: [:created_at, :updated_at])
+    end
+
+    def remove_follower
+        user = User.find(params[:user_id])
+        Follow.where("follower_id = ? AND followee_id = ?", params[:user_id], params[:follow_id])[0].destroy
+        render json: user.to_json(include: [:followers, :followees], except: [:created_at, :updated_at])
     end
 
     private

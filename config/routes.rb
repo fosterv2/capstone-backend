@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   patch '/users/:user_id/groups', to: 'users#add_group'
   delete '/users/:user_id/groups', to: 'users#remove_group'
   patch '/posts/:post_id/likes', to: 'posts#add_like'
+  patch '/users/:user_id/follows', to: 'users#add_follower'
+  delete '/users/:user_id/follows', to: 'users#remove_follower'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
