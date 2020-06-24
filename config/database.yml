@@ -71,15 +71,15 @@ test:
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-DATABASE_URL="postgres://aubdlexlkrrlye:19806c39d5c7c8a0be546e1ee1a1c8873fa0eb445a28a34dd7d19f27c771fd2f@ec2-54-161-208-31.compute-1.amazonaws.com:5432/d3kovf0kct3p7n"
+#  DATABASE_URL="postgres://aubdlexlkrrlye:19806c39d5c7c8a0be546e1ee1a1c8873fa0eb445a28a34dd7d19f27c771fd2f@ec2-54-161-208-31.compute-1.amazonaws.com:5432/d3kovf0kct3p7n"
 #
 # You can use this database configuration with:
 #
-  production:
-    url: <%= ENV['DATABASE_URL'] %>
+#   production:
+#     url: <%= ENV['DATABASE_URL'] %>
 #
-# production:
-#   <<: *default
-#   database: capstone_backend_production
-#   username: capstone_backend
-#   password: <%= ENV['CAPSTONE_BACKEND_DATABASE_PASSWORD'] %>
+production:
+  <<: *default
+  database: capstone_backend_production
+  username: capstone_backend
+  password: <%= ENV['CAPSTONE_BACKEND_DATABASE_PASSWORD'] %>
