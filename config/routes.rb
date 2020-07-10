@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :groups, only: [:index, :create, :update]
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :update, :destroy]
   resources :posts, only: [:index, :create, :update, :destroy]
   resources :users, only: [:create, :update]
   post '/auth', to: 'auth#create'
