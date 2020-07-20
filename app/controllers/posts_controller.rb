@@ -5,8 +5,12 @@ class PostsController < ApplicationController
     end
 
     def create
-        post = Post.create(set_params)
+        post = Post.create(content: params[:content], user_id: params[:user_id], post_img: params[:post_img])
         post.group_ids = params[:group_ids]
+        if params[:image] != "null"
+            image = Cloudinary::Uploader.upload(params[:image])
+            post.post_img = image["url"]
+        end
         render json: post.to_json(include: [:user, :groups, :likes], except: [:updated_at])
     end
 
@@ -32,6 +36,6 @@ class PostsController < ApplicationController
     private
 
     def set_params
-        params.require(:post).permit(:content, :user_id, :group_id, :post_img, :deleted)
+        params.require(:post).permit(:content, :user_id, :post_img, :deleted)
     end
 end

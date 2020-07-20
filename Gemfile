@@ -49,3 +49,5 @@ gem "faker", "~> 2.12"
 gem "rest-client", "~> 2.1"
 
 gem 'rails_12factor', group: :production
+
+gem 'cloudinary', '~> 1.16', '>= 1.16.1'
