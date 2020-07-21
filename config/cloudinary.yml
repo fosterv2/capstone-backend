@@ -1,0 +1,18 @@
+development:
+  cloud_name: valdenfos
+  api_key: '219367851951356'
+  api_secret: UOnsaoQTmyEFZyV2qGKAFuooQhs
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: valdenfos
+  api_key: '219367851951356'
+  api_secret: UOnsaoQTmyEFZyV2qGKAFuooQhs
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: valdenfos
+  api_key: '219367851951356'
+  api_secret: UOnsaoQTmyEFZyV2qGKAFuooQhs
+  enhance_image_tag: true
+  static_file_support: false
