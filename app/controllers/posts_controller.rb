@@ -12,7 +12,6 @@ class PostsController < ApplicationController
             image = Cloudinary::Uploader.upload(params[:image])
             post.update(post_img: image["url"])
         end
-        byebug
         render json: post.to_json(include: [:user, :groups, :likes], except: [:updated_at])
     end
 
