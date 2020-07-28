@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
     def create
-        user = User.new(set_params)
-        user.password = params[:password]
+        byebug
+        user = User.new(username: params[:username], owner_name: params[:owner_name], breed: params[:breed],
+                img_url: params[:img_url], password: params[:password])
+        if params[:image] != "null"
+            image = Cloudinary::Uploader.upload(params[:image])
+            post.update(post_img: image["url"])
+        end
         user.save
         if user.valid?
             token = encode_token({ user_id: user.id })
@@ -44,9 +49,15 @@ class UsersController < ApplicationController
         render json: user.to_json(include: [:followers, :followees], except: [:created_at, :updated_at])
     end
 
-    private
+    # private
 
-    def set_params
-        params.require(:user).permit(:username, :owner_name, :breed, :img_url, :password, :password_confirmation)
-    end
+    # def set_params
+    #     params.require(:user).permit(:username, :owner_name, :breed, :img_url, :password, :password_confirmation)
+    # end
 end
+
+Started POST "/posts" for ::1 at 2020-07-28 12:21:50 -0700
+Processing by PostsController#create as */*
+Parameters: {"id"=>"undefined", "content"=>"My picture", "post_img"=>"", "group_ids"=>"", "user_id"=>"6",
+"image"=>#<ActionDispatch::Http::UploadedFile:0x00007fa3a998fd60 @tempfile=#<Tempfile:/var/folders/8p/sh99mbbx5bs_3r0x36xmt7x00000gn/T/RackMultipart20200728-19512-1ojsgm7.jpg>, @original_filename="IMG_20200701_155036520.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"IMG_20200701_155036520.jpg\"\r\nContent-Type: image/jpeg\r\n">}
+  (1.2ms)  BEGIN
