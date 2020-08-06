@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
     def create
-        byebug
         user = User.new(username: params[:username], owner_name: params[:owner_name], breed: params[:breed],
                 img_url: params[:img_url], password: params[:password])
         if params[:image] != "null"
             image = Cloudinary::Uploader.upload(params[:image])
-            post.update(post_img: image["url"])
+            user.img_url = image["url"]
         end
         user.save
         if user.valid?
@@ -56,8 +55,8 @@ class UsersController < ApplicationController
     # end
 end
 
-Started POST "/posts" for ::1 at 2020-07-28 12:21:50 -0700
-Processing by PostsController#create as */*
-Parameters: {"id"=>"undefined", "content"=>"My picture", "post_img"=>"", "group_ids"=>"", "user_id"=>"6",
-"image"=>#<ActionDispatch::Http::UploadedFile:0x00007fa3a998fd60 @tempfile=#<Tempfile:/var/folders/8p/sh99mbbx5bs_3r0x36xmt7x00000gn/T/RackMultipart20200728-19512-1ojsgm7.jpg>, @original_filename="IMG_20200701_155036520.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"IMG_20200701_155036520.jpg\"\r\nContent-Type: image/jpeg\r\n">}
-  (1.2ms)  BEGIN
+# Started POST "/posts" for ::1 at 2020-07-28 12:21:50 -0700
+# Processing by PostsController#create as */*
+# Parameters: {"id"=>"undefined", "content"=>"My picture", "post_img"=>"", "group_ids"=>"", "user_id"=>"6",
+# "image"=>#<ActionDispatch::Http::UploadedFile:0x00007fa3a998fd60 @tempfile=#<Tempfile:/var/folders/8p/sh99mbbx5bs_3r0x36xmt7x00000gn/T/RackMultipart20200728-19512-1ojsgm7.jpg>, @original_filename="IMG_20200701_155036520.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image\"; filename=\"IMG_20200701_155036520.jpg\"\r\nContent-Type: image/jpeg\r\n">}
+#   (1.2ms)  BEGIN
