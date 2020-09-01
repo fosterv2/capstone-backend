@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :conversations
   resources :groups, only: [:index, :create, :update]
   resources :comments, only: [:create, :update, :destroy]
   resources :posts, only: [:index, :create, :update, :destroy]
@@ -11,5 +13,7 @@ Rails.application.routes.draw do
   patch '/posts/:post_id/likes', to: 'posts#add_like'
   patch '/users/:user_id/follows', to: 'users#add_follower'
   delete '/users/:user_id/follows', to: 'users#remove_follower'
+
+  mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
